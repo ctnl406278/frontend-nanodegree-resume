@@ -16,8 +16,49 @@ $("#main").append(funThoughts); */
 
 var name = "Daniel Struwig";
 var role = "Global Technical Trainee";
+var email = "Daniel.Struwig@dnvgl.com";
+var skills = [
+	"surveying",
+	"programming",
+	"exploring"
+	];
+	
+var formattedName = HTMLheaderName.replace("%data%", name);
+var formattedRole = HTMLheaderRole.replace("%data%", role);
+var formattedEmail = HTMLemail.replace("%data%", email);
+var formattedSkills = HTMLskills.replace("%data%", skills);
 
-var formattedName = HTMLheaderName.replace("%data%", name)
-var formattedRole = HTMLheaderRole.replace("%data%", role)
+$("#header").prepend(formattedRole);
 $("#header").prepend(formattedName);
-$("#header").append(formattedRole);
+$("#header").append(formattedEmail);
+$("#header").append(formattedSkills);
+//-------------------------------------------------------------------------------------
+var bio = {
+	"name": 	"Daniel Struwig",
+	"role": 	"Global Technical Trainee",
+	"contacts": {
+		"mobile":	"+12 (3) 456 7890",
+		"email":	"Daniel.Struwig@dnvgl.com",
+		"github":	"ctnl406278",
+		"location":	"Saint-Nazaire, France"
+	},
+	"age":	31,
+	"welcomeMsg":	"Hi y'all my name is Danstr. How y'all doin?",
+	"skills": 	skills,
+	"bioPic":	"images/PolarBear.jpg"
+};	
+$("#main").append(bio.name);
+$("#main").append(bio.bioPic);
+//-------------------------------------------------------------------------------------
+bio.city = "Trignac";
+bio.altEmail = "Danstr@dnvgl.com";
+$("#main").append(bio.city);
+
+bio["dorp"] = "Doringkop";
+bio["epos"] = "DaanSeEpos@epos.co.za";
+$("#main").append(bio.dorp);
+
+
+
+
+
