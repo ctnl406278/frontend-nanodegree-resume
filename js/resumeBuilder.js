@@ -1,3 +1,14 @@
+//RESUMEBUILDER
+
+var name = "Daniel Struwig";
+var role = "Global Technical Trainee";
+var email = "Daniel.Struwig@dnvgl.com";
+var skills = [
+		"surveying",
+		"programming",
+		"exploring"
+	];
+
 var bio = {
     "name": "Daniel Struwig",
     "role": "Global Technical Trainee",
@@ -16,6 +27,16 @@ var bio = {
     ],
     "bioPic": "images/PolarBear.jpg"
 };
+
+var formattedName = HTMLheaderName.replace("%data%", name);
+var formattedRole = HTMLheaderRole.replace("%data%", role);
+var formattedEmail = HTMLemail.replace("%data%", email);
+var formattedSkills = HTMLskills.replace("%data%", skills);
+
+$("#header").prepend(formattedRole);
+$("#header").prepend(formattedName);
+$("#header").append(formattedEmail);
+$("#header").append(formattedSkills);
 
 var education = {
     "schools": [
@@ -72,6 +93,30 @@ var education = {
     ]
 }
 
+for (i = 0; i < education.schools.length; i ++){ 
+var formattedHTMLschoolName = HTMLschoolName.replace("%data%", education.schools[i].name);
+var formattedHTMLschoolDegree = HTMLschoolDegree.replace("%data%", education.schools[i].qualification);
+var formattedHTMLschoolDates = HTMLschoolDates.replace("%data%", education.schools[i].yearsAttended);
+var formattedHTMLschoolLocation = HTMLschoolLocation.replace("%data%", education.schools[i].location);
+var formattedHTMLschoolMajor = HTMLschoolMajor.replace("%data%", education.schools[i].major);
+
+var formattedHTMLonlineTitle = HTMLonlineTitle.replace("%data%", education.onlineCourses[i].title);
+var formattedHTMLonlineSchool = HTMLonlineSchool.replace("%data%", education.onlineCourses[i].name);
+var formattedHTMLonlineDates = HTMLonlineDates.replace("%data%", education.onlineCourses[i].date);
+var formattedHTMLonlineURL = HTMLonlineURL.replace("%data%", education.schools[i].url);
+
+$("#education").append(formattedHTMLschoolName);
+$("#education").append(formattedHTMLschoolDegree);
+$("#education").append(formattedHTMLschoolDates);
+$("#education").append(formattedHTMLschoolLocation);
+$("#education").append(formattedHTMLschoolMajor);
+
+$("#education").append(formattedHTMLonlineTitle);
+$("#education").append(formattedHTMLonlineSchool);
+$("#education").append(formattedHTMLonlineDates);
+$("#education").append(formattedHTMLonlineURL);
+}
+
 var work = {
     "job": [
         {
@@ -108,27 +153,14 @@ var projects = {
     ]
 };
 
-
 //-------------------------------------------------------------------------------------
-//RESUMEBUILDER
-var name = "Daniel Struwig";
-var role = "Global Technical Trainee";
-var email = "Daniel.Struwig@dnvgl.com";
-var skills = [
-	"surveying",
-	"programming",
-	"exploring"
-	];
-	
-var formattedName = HTMLheaderName.replace("%data%", name);
-var formattedRole = HTMLheaderRole.replace("%data%", role);
-var formattedEmail = HTMLemail.replace("%data%", email);
-var formattedSkills = HTMLskills.replace("%data%", skills);
 
-$("#header").prepend(formattedRole);
-$("#header").prepend(formattedName);
-$("#header").append(formattedEmail);
-$("#header").append(formattedSkills);
+/* HTMLschoolName = '<a href="#">%data%';
+HTMLschoolDegree = ' -- %data%</a>';
+HTMLschoolDates = '<div class="date-text">%data%</div>';
+HTMLschoolLocation = '<div class="location-text">%data%</div>';
+HTMLschoolMajor = '<em><br>Major: %data%</em>'; */
+
 
 //-------------------------------------------------------------------------------------
 //APPEND AND CONSOLE OUTPUT
@@ -215,14 +247,14 @@ work.workTitle = "Global Technical Trainee";
 work.workEmplopyer = "DNV GL";
 work.workYearsEmployed = "2 yrs";
 work.workLocation = "Cape Town, WC, RSA";
-$("main").append(work["workTitle"]);
+$("#main").append(work["workTitle"]);
 console.log(work["workTitle"]);
 
 var education = {};
 education["schoolName"] = "Univeristy of Stellenbosch";
 education["schoolYearsAttend"] = "2002 - 2012";
 education["schoolLocation"] = "Stellenbosch, WC, RSA";
-$("main").append(education.schoolName);
+$("#main").append(education.schoolName);
 console.log(education.schoolName); */
 
 //-------------------------------------------------------------------------------------
