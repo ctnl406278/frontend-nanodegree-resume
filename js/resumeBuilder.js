@@ -1,5 +1,5 @@
 //RESUMEBUILDER
-
+//BIO INFORMATION------------------------------------------------------------------------------------------
 var bio = {
     "name": "Daniel J. Struwig",
     "role": "Global Technical Trainee",
@@ -59,6 +59,7 @@ if (bio.skills.length > 0){
 	}
 }
 
+//EDUCATION INFORMATION------------------------------------------------------------------------------------
 var education = {
     "schools": [
         {
@@ -141,6 +142,7 @@ $("#education").append(formattedOnlineDates);
 $("#education").append(formattedOnlineURL);
 }
 
+//WORK INFORMATION-----------------------------------------------------------------------------------------
 var work = {
     "jobs": [
         {
@@ -175,17 +177,22 @@ $("#workExperience").append(formattedWorkLocation);
 $("#workExperience").append(formattedWorkDescription);
 } */	
 
-for (job in work.jobs){
-	$("#workExperience").append(HTMLworkStart);
-	var formattedWorkEmployer = HTMLworkEmployer.replace("%data%", work.jobs[job].employer);
-    var formattedWorkTitle = HTMLworkTitle.replace("%data%", work.jobs[job].title);
-	var formattedWorkDates = HTMLworkDates.replace("%data%", work.jobs[job].yearsEmployed);
-	var formattedWorkLocation = HTMLworkLocation.replace("%data%", work.jobs[job].location);
-	var formattedWorkDescription = HTMLworkDescription.replace("%data%", work.jobs[job].description);
-	var formattedWork = formattedWorkEmployer + formattedWorkTitle + formattedWorkDates + formattedWorkLocation + formattedWorkDescription;
-	$(".work-entry:last").append(formattedWork);
+function displayWork(){
+	for (job in work.jobs){
+		$("#workExperience").append(HTMLworkStart);
+		var formattedWorkEmployer = HTMLworkEmployer.replace("%data%", work.jobs[job].employer);
+		var formattedWorkTitle = HTMLworkTitle.replace("%data%", work.jobs[job].title);
+		var formattedWorkDates = HTMLworkDates.replace("%data%", work.jobs[job].yearsEmployed);
+		var formattedWorkLocation = HTMLworkLocation.replace("%data%", work.jobs[job].location);
+		var formattedWorkDescription = HTMLworkDescription.replace("%data%", work.jobs[job].description);
+		var formattedWork = formattedWorkEmployer + formattedWorkTitle + formattedWorkDates + formattedWorkLocation + formattedWorkDescription;
+		$(".work-entry:last").append(formattedWork);
 	}
+}
 
+displayWork();
+
+//PROJECT INFORMATION--------------------------------------------------------------------------------------
 var projects = {
     "project": [
         {
@@ -216,10 +223,3 @@ $("#projects").append(formattedProjectLocation);
 $("#projects").append(formattedProjectDescription);
 }
 
-//-------------------------------------------------------------------------------------
-
-HTMLschoolName = '<a href="#">%data%';
-HTMLschoolDegree = ' -- %data%</a>';
-HTMLschoolDates = '<div class="date-text">%data%</div>';
-HTMLschoolLocation = '<div class="location-text">%data%</div>';
-HTMLschoolMajor = '<em><br>Major: %data%</em>';
