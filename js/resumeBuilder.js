@@ -1,7 +1,7 @@
 //RESUMEBUILDER
 //BIO INFORMATION------------------------------------------------------------------------------------------
 var bio = {
-    "name": "Daniel J. Struwig",
+    "name": "Daniel Struwig",
     "role": "Global Technical Trainee",
     "contacts": {
         "mobile": "+12 (3) 456 7890",
@@ -189,7 +189,6 @@ function displayWork(){
 		$(".work-entry:last").append(formattedWork);
 	}
 }
-
 displayWork();
 
 //PROJECT INFORMATION--------------------------------------------------------------------------------------
@@ -210,7 +209,7 @@ var projects = {
     ]
 };
 
-$("#projects").append(HTMLprojectStart);
+/* $("#projects").append(HTMLprojectStart);
 for (i = 0; i < projects.project.length; i ++){
 var formattedProjectTitle = HTMLprojectTitle.replace("%data%", projects.project[i].title);
 var formattedProjectDates = HTMLprojectDates.replace("%data%", projects.project[i].yearsActive);
@@ -221,5 +220,35 @@ $("#projects").append(formattedProjectTitle);
 $("#projects").append(formattedProjectDates);
 $("#projects").append(formattedProjectLocation);
 $("#projects").append(formattedProjectDescription);
-}
+} */
 
+//Encapsulation of display function with projects object.
+projects.display = function(){
+	for (task in projects.project){
+	$("#projects").append(HTMLprojectStart);
+	var formattedProjectTitle = HTMLprojectTitle.replace("%data%", projects.project[task].title);
+	var formattedProjectDates = HTMLprojectDates.replace("%data%", projects.project[task].yearsActive);
+	var formattedProjectLocation = HTMLprojectDescription.replace("%data%", projects.project[task].location);
+	var formattedProjectDescription = HTMLprojectDescription.replace("%data%", projects.project[task].description);
+	var formattedProjects = formattedProjectTitle + formattedProjectDates + formattedProjectLocation + formattedProjectDescription;
+	$(".project-entry:last").append(formattedProjects);
+	}
+}
+projects.display();
+
+//INTERNATIONALIZE YOUR NAME---------------------------------------------------------------------------------
+
+function inName(localName){
+    var internationalName = localName;
+	var names = localName.trim().split(" ");
+    names[1] = names[1].toUpperCase();
+    names[0] = names[0].slice(0,1).toUpperCase() + names[0].slice(1).toLowerCase();
+    internationalName = names.join(" ");
+	    
+	return internationalName;
+};
+console.log(inName(bio.name));
+
+$("#main").append(internationalizeButton);
+
+$("#mapDiv").append(googleMap);
