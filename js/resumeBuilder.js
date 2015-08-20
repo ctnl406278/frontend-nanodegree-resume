@@ -7,7 +7,7 @@ var bio = {
         "mobile": "+12 (3) 456 7890",
         "email": "Daniel.Struwig@dnvgl.com",
         "github": "ctnl406278",
-        "location": "Saint-Nazaire, France"
+        "location": "Durban, Kwazulu-Natal, South Africa"
     },
     "age": 31,
     "welcomeMsg": "Hi y'all my name is Danstr. How y'all doin?",
@@ -39,16 +39,6 @@ $("#header").append(formattedBioGitHub);
 $("#header").append(formattedBioLocation);
 $("#header").append(formattedBioProfilePic);
 
-/* if (bio.skills.length > 0){
-	$("#header").append(HTMLskillsStart);
-	var formattedBioSkills = HTMLskills.replace("%data%", bio.skills[0]);
-	$("#skills").append(formattedBioSkills);
-	formattedBioSkills = HTMLskills.replace("%data%", bio.skills[1]);
-	$("#skills").append(formattedBioSkills);
-	formattedBioSkills = HTMLskills.replace("%data%", bio.skills[2]);
-	$("#skills").append(formattedBioSkills);
-} */
-
 if (bio.skills.length > 0){
 	$("#header").append(HTMLskillsStart);
 	var skillsCnt = 0;
@@ -65,7 +55,7 @@ var education = {
         {
             "name": "Univeristy of Stellenbosch",
             "yearsAttended": "2002 - 2006",
-            "location": "Stellenbosch, WC, RSA",
+            "location": "Stellenbosch, Western Cape, South Africa",
             "qualification": "BEng (E&E)",
             "major": [
                 "High Voltage",
@@ -75,7 +65,7 @@ var education = {
         {
             "name": "Univeristy of Stellenbosch",
             "yearsAttended": "2007 - 2009",
-            "location": "Stellenbosch, WC, RSA",
+            "location": "Stellenbosch, Western Cape, South Africa",
             "qualification": "BEng (M&M)",
             "major": [
                 "Fluid Mechanics",
@@ -85,7 +75,7 @@ var education = {
         {
             "name": "Univeristy of Stellenbosch",
             "yearsAttended": "2010 - 2012",
-            "location": "Stellenbosch, WC, RSA",
+            "location": "Stellenbosch, Western Cape, South Africa",
             "qualification": "MScEng (Mech)",
             "major": [
                 "Computational Fluid Dynamics",
@@ -115,32 +105,37 @@ var education = {
     ]
 }
 
-for (i = 0; i < education.schools.length; i ++){ 
-var formattedSchoolName = HTMLschoolName.replace("%data%", education.schools[i].name);
-var formattedSchoolDegree = HTMLschoolDegree.replace("%data%", education.schools[i].qualification);
-var formattedSchoolDates = HTMLschoolDates.replace("%data%", education.schools[i].yearsAttended);
-var formattedSchoolLocation = HTMLschoolLocation.replace("%data%", education.schools[i].location);
-var formattedSchoolMajor = HTMLschoolMajor.replace("%data%", education.schools[i].major);
-
-$("#education").append(formattedSchoolName);
-$("#education").append(formattedSchoolDegree);
-$("#education").append(formattedSchoolDates);
-$("#education").append(formattedSchoolLocation);
-$("#education").append(formattedSchoolMajor);
+education.display = function(){
+	$(".education-entry:last").append(HTMLschools);
+	for (school in education.schools){
+		$("#education").append(HTMLschoolStart);
+		var formattedSchoolName = HTMLschoolName.replace("%data%", education.schools[school].name);
+		var formattedSchoolDegree = HTMLschoolDegree.replace("%data%", education.schools[school].qualification);
+		var formattedSchool = formattedSchoolName + formattedSchoolDegree;
+		$(".education-entry:last").append(formattedSchool);
+		
+		var formattedSchoolDates = HTMLschoolDates.replace("%data%", education.schools[school].yearsAttended);
+		$(".education-entry:last").append(formattedSchoolDates);
+		var formattedSchoolLocation = HTMLschoolLocation.replace("%data%", education.schools[school].location);
+		$(".education-entry:last").append(formattedSchoolLocation);
+		var formattedSchoolMajor = HTMLschoolMajor.replace("%data%", education.schools[school].major);
+		$(".education-entry:last").append(formattedSchoolMajor);;
+	}
+	
+	$(".education-entry:last").append(HTMLonlineClasses);
+	for (course in education.onlineCourses){
+		var formattedOnlineTitle = HTMLonlineTitle.replace("%data%", education.onlineCourses[course].title);
+		var formattedOnlineSchool = HTMLonlineSchool.replace("%data%", education.onlineCourses[course].name);
+		var formattedOnlineCourse = formattedOnlineTitle + formattedOnlineSchool;
+		$(".education-entry:last").append(formattedOnlineCourse);
+		
+		var formattedOnlineDates = HTMLonlineDates.replace("%data%", education.onlineCourses[course].date);
+		$(".education-entry:last").append(formattedOnlineDates);
+		var formattedOnlineURL = HTMLonlineURL.replace("%data%", education.onlineCourses[course].url);
+		$(".education-entry:last").append(formattedOnlineURL);
+	}
 }
-
-$("#education").append(HTMLonlineClasses);
-for (i = 0; i < education.onlineCourses.length; i ++){ 
-var formattedOnlineTitle = HTMLonlineTitle.replace("%data%", education.onlineCourses[i].title);
-var formattedOnlineSchool = HTMLonlineSchool.replace("%data%", education.onlineCourses[i].name);
-var formattedOnlineDates = HTMLonlineDates.replace("%data%", education.onlineCourses[i].date);
-var formattedOnlineURL = HTMLonlineURL.replace("%data%", education.onlineCourses[i].url);
-
-$("#education").append(formattedOnlineTitle);
-$("#education").append(formattedOnlineSchool);
-$("#education").append(formattedOnlineDates);
-$("#education").append(formattedOnlineURL);
-}
+education.display();
 
 //WORK INFORMATION-----------------------------------------------------------------------------------------
 var work = {
@@ -148,36 +143,21 @@ var work = {
         {
             "employer": "InnoWind (Pty) Ltd",
             "title": "Study Engineer",
-            "location": "Cape Town, WC, RSA",
+            "location": "Cape Town, Western Cape, South Africa",
             "yearsEmployed": "Jan 2014 - Jul 2015",
             "description": "Energy assesments as part of developing wind farms"
         },
         {
             "employer": "DNV GL",
             "title": "Global Technical Trainee",
-            "location": "Cape Town, WC, RSA",
+            "location": "Cape Town, Western Cape, South Africa",
             "yearsEmployed": "Aug 2014 - present",
             "description": "As a Global Trainee my role is to gain working experience in various business units of the compnay in different locations around the globe"
         }
     ]
 };
 
-/* $("#workExperience").append(HTMLworkStart);
-for (i = 0; i < work.jobs.length; i ++){
-var formattedWorkEmployer = HTMLworkEmployer.replace("%data%", work.jobs[i].employer);
-var formattedWorkTitle = HTMLworkTitle.replace("%data%", work.jobs[i].title);
-var formattedWorkDates = HTMLworkDates.replace("%data%", work.jobs[i].yearsEmployed);
-var formattedWorkLocation = HTMLworkLocation.replace("%data%", work.jobs[i].location);
-var formattedWorkDescription = HTMLworkDescription.replace("%data%", work.jobs[i].description);
-
-$("#workExperience").append(formattedWorkEmployer);
-$("#workExperience").append(formattedWorkTitle);
-$("#workExperience").append(formattedWorkDates);
-$("#workExperience").append(formattedWorkLocation);
-$("#workExperience").append(formattedWorkDescription);
-} */	
-
-function displayWork(){
+work.display = function(){
 	for (job in work.jobs){
 		$("#workExperience").append(HTMLworkStart);
 		var formattedWorkEmployer = HTMLworkEmployer.replace("%data%", work.jobs[job].employer);
@@ -187,49 +167,36 @@ function displayWork(){
 		var formattedWorkDescription = HTMLworkDescription.replace("%data%", work.jobs[job].description);
 		var formattedWork = formattedWorkEmployer + formattedWorkTitle + formattedWorkDates + formattedWorkLocation + formattedWorkDescription;
 		$(".work-entry:last").append(formattedWork);
-	}
+	}	
 }
-displayWork();
+work.display();
 
 //PROJECT INFORMATION--------------------------------------------------------------------------------------
 var projects = {
-    "project": [
+    "projects": [
         {
             "title": "Energy assesment for Wesley Windfarm",
-            "location": "Wesley, EC, RSA",
+            "location": "Wesley, Eastern Cape, South Africa",
             "yearsActive": "Jan 2014 - Jul 2015",
             "description": "Energy assesments for the development of this wind farm"
         },
         {
             "title": "RCCL Harmony of the Seas",
-            "location": "Saint-Nazaire, Loire-Atlantique, FRA",
+            "location": "Saint-Nazaire, Loire-Atlantique, France",
             "yearsActive": "Mar 2015 - Aug 2015",
             "description": "Newbuild surveying of the construction of the ship"
         }
     ]
 };
 
-/* $("#projects").append(HTMLprojectStart);
-for (i = 0; i < projects.project.length; i ++){
-var formattedProjectTitle = HTMLprojectTitle.replace("%data%", projects.project[i].title);
-var formattedProjectDates = HTMLprojectDates.replace("%data%", projects.project[i].yearsActive);
-var formattedProjectLocation = HTMLprojectDescription.replace("%data%", projects.project[i].location);
-var formattedProjectDescription = HTMLprojectDescription.replace("%data%", projects.project[i].description);
-
-$("#projects").append(formattedProjectTitle);
-$("#projects").append(formattedProjectDates);
-$("#projects").append(formattedProjectLocation);
-$("#projects").append(formattedProjectDescription);
-} */
-
 //Encapsulation of display function with projects object.
 projects.display = function(){
-	for (task in projects.project){
+	for (project in projects.projects){
 	$("#projects").append(HTMLprojectStart);
-	var formattedProjectTitle = HTMLprojectTitle.replace("%data%", projects.project[task].title);
-	var formattedProjectDates = HTMLprojectDates.replace("%data%", projects.project[task].yearsActive);
-	var formattedProjectLocation = HTMLprojectDescription.replace("%data%", projects.project[task].location);
-	var formattedProjectDescription = HTMLprojectDescription.replace("%data%", projects.project[task].description);
+	var formattedProjectTitle = HTMLprojectTitle.replace("%data%", projects.projects[project].title);
+	var formattedProjectDates = HTMLprojectDates.replace("%data%", projects.projects[project].yearsActive);
+	var formattedProjectLocation = HTMLprojectDescription.replace("%data%", projects.projects[project].location);
+	var formattedProjectDescription = HTMLprojectDescription.replace("%data%", projects.projects[project].description);
 	var formattedProjects = formattedProjectTitle + formattedProjectDates + formattedProjectLocation + formattedProjectDescription;
 	$(".project-entry:last").append(formattedProjects);
 	}
@@ -237,7 +204,6 @@ projects.display = function(){
 projects.display();
 
 //INTERNATIONALIZE YOUR NAME---------------------------------------------------------------------------------
-
 function inName(localName){
     var internationalName = localName;
 	var names = localName.trim().split(" ");
